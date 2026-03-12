@@ -6,7 +6,7 @@ import datetime
 
 
 # TODO: move counter to own file ✅
-# TODO: add DB (txt/csv file)
+# TODO: add DB (txt/csv file) ✅
 # TODO: add cookie grabber? / pc fingerprint?
 # TODO: kill function
 # TODO: {cookie, fingerprint}.py file > validate > generate > force reset
@@ -37,7 +37,6 @@ def decrease_counters():
 
 
 def handle_client(conn, addr):
-    ip_address = addr[0]
     client_data.set_ip(addr[0])
     print(f'Connected by {addr}')
 
@@ -68,6 +67,7 @@ def handle_client(conn, addr):
                     #Kill the connection from the server
                     error_msg = "SCAMMER GET SCAMMED"
                     conn.sendall(error_msg.encode())
+                    add_scammer_to_db(client_data.IP_ADDRESS)
                     # conn.fuckoff
                     break
                 else:
@@ -89,9 +89,7 @@ def add_scammer_to_db(ip_address):
         file.write('\n')
         # Then, write the actual content
         file.write(new_line_content)
-
-    print(f"Content appended to {file_path} successfully.")
-
+        print("Scammer data added to db :)")
 
 def main():
     # Start the imer
