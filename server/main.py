@@ -2,6 +2,7 @@ import socket
 import threading
 from time import sleep
 import connector
+import datetime
 
 
 # TODO: move counter to own file ✅
@@ -75,6 +76,21 @@ def handle_client(conn, addr):
 
             except ConnectionResetError:
                 break
+
+
+def add_scammer_to_db(ip_address):
+    file_path = 'scammers_ips.txt'
+    date = datetime.datetime.now()
+    new_line_content = f"{ip_address}, {date}"
+
+    # Open the file in append mode using a context manager
+    with open(file_path, 'a') as file:
+        # First, write a newline character to ensure the new content starts on a fresh line
+        file.write('\n')
+        # Then, write the actual content
+        file.write(new_line_content)
+
+    print(f"Content appended to {file_path} successfully.")
 
 
 def main():
