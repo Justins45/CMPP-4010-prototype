@@ -7,9 +7,10 @@ import datetime
 
 # TODO: move counter to own file ✅
 # TODO: add DB (txt/csv file) ✅
-# TODO: add cookie grabber? / pc fingerprint?
+# TODO: add cookie grabber? / pc fingerprint? => cant do unless its on a website <=
 # TODO: kill function ✅❔
 # TODO: {cookie, fingerprint}.py file > validate > generate > force reset
+#       using haslib? create a fake version?
 
 # Configuration
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
@@ -79,11 +80,9 @@ def add_scammer_to_db(ip_address):
     date = datetime.datetime.now()
     new_line_content = f"{ip_address}, {date}"
 
-    # Open the file in append mode using a context manager
+    # Add scammer IP to database
     with open(file_path, 'a') as file:
-        # First, write a newline character to ensure the new content starts on a fresh line
         file.write('\n')
-        # Then, write the actual content
         file.write(new_line_content)
         print("Scammer data added to db :)")
 

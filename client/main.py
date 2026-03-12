@@ -1,5 +1,6 @@
 import socket
 import time
+import uuid
 
 #This is mainly just for testing
 def new_ping(message, sock):
@@ -9,7 +10,17 @@ def new_ping(message, sock):
     return data
 
 
+def send_cookie():
+    # Python does not have a proper cookie / fingerprint unless it's an actual server
+    # current implementation uses an uuid string that will be a new generation
+    # on each client start/run of the script
+    # We don't need to worry about UUID overlap as there is nothing else that
+    # is being used by a UUID in our scripts
+    return str(uuid.uuid4())
+
+
 def main():
+    send_cookie()
     HOST = '127.0.0.1'  # The server's hostname or IP address
     PORT = 65432  # The port used by the server
 
