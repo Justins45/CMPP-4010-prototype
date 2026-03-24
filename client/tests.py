@@ -12,3 +12,7 @@ class TestPings(unittest.TestCase):
         mock_socket.sendall.assert_called_once_with(b"PING")
         mock_socket.recv.assert_called_once_with(1024)
         self.assertEqual(result, b"PONG")
+
+
+if __name__ == '__main__':
+    unittest.main()

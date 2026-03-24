@@ -40,7 +40,7 @@ def main():
                         break
 
                 elif user_input == "2" or user_input == "ping many":
-                    #Simulates the bot behavior
+                    # Simulates the bot behavior
                     for i in range(7):
                         try:
                             data = new_ping(f"Buy Ticket #{i + 1}", s)

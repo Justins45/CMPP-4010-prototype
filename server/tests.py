@@ -1,5 +1,5 @@
 import unittest
-from main import Connector
+from connector import Connector
 
 class TestConnector(unittest.TestCase):
 
@@ -26,3 +26,7 @@ class TestConnector(unittest.TestCase):
         connector.increment_count()
         connector.decrement_timed()
         self.assertEqual(connector.timed_count, 0)
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -44,6 +44,9 @@ def handle_client(conn, addr):
 
                 should_ban = False
 
+                # TODO: check each request for a cookie thats sent and add to
+                #       the client data
+
                 with data_lock:
                     #Increment counts
                     client_data.increment_count()
