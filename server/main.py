@@ -113,7 +113,12 @@ def main():
 
         while True:
             conn, addr = s.accept()
-            handle_client(conn, addr)
+            # Makes a new thread for every person who connects
+            client_thread = threading.Thread(target=handle_client, args=(conn, addr), daemon=True)
+            client_thread.start()
+            
+            #conn, addr = s.accept()
+            #handle_client(conn, addr)
 
 
 if __name__ == '__main__':

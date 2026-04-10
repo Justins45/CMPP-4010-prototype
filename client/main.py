@@ -6,9 +6,23 @@ import uuid
 def new_ping(message, sock):
     sock.sendall(message.encode())
     data = sock.recv(1024)
-    print(f"Received from server: {data.decode()}")
-    return data
+    #print(f"Received from server: {data.decode()}")
+    #return data
+    #a change so it should actually send the UUID when the server asks for it (theoretically)
+    response = data.decode()
 
+    #check if the server is asking for the cookie
+    if response == "gibcookie":
+        print("The server is requesting the cookie, sending the fingerprint...")
+        my_cookie = send_cookie()
+        sock.sendall(my_cookie.encode())
+
+        # wait for the server's actual response after sending the cookie
+        data = sock.recv(1024)
+        response = data.decode()
+
+    print(f"Received from server: {response}")
+    return data
 
 def send_cookie():
     # Python does not have a proper cookie / fingerprint unless it's an actual server
