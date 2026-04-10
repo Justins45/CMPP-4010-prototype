@@ -1,14 +1,15 @@
-# CMPP4010 Phase 2 Prototype
+# CMPP4010 Ticket Scam Prevention Prototype
 
-This is the prototype code for phase 2 of our semester long project... 
-to get started you can run the `run_program.bat` file and it will setup
-the program with the server in one termianl and the client in another.
+The idea behind this prototype is to showcase how it can be possible 
+for software to exist that accurately prevents ticket scammers from 
+getting too many tickets with the intent to resell. 
 
-Your can also run the unit tests for the program by running the
-`run_tests.bat` file.
+There are a few ways to run this project:
 
-**Keep in mind** you will need to get a .venv setup for both the client 
-and server side on your machine.
- 
-This is because we are not using Docker **(yet - coming soon)** so the .venv will not work on 
-across multiple computers, they each need to be local to our machine.
+1. Utilize built Python itself to run `/client/main.py` and `/server/main.py` files in separate terminals
+2. Utilize Windows `run_program.bat` and `run_tests.bat` files (windows only at the moment)
+3. Utilize Docker Compose:
+   - Start containers in the background `docker-compose up --build -d`
+   - Terminal A run `docker-compose logs -f server`
+   - Terminal B run `docker-compose exec client python3 -u main.py`
+   - ps. (don't forget `docker-compose down`)
